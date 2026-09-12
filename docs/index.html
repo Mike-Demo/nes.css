@@ -38,6 +38,7 @@
           <nav class="nav-actions" aria-label="Primary">
             <a class="nes-btn" href="#principles" :aria-current="activeSection === 'principles' ? 'location' : null">Principles</a>
             <a class="nes-btn" href="#foundations" :aria-current="activeSection === 'foundations' ? 'location' : null">Foundations</a>
+            <a class="nes-btn" href="#adaptation" :aria-current="activeSection === 'adaptation' ? 'location' : null">Adaptation</a>
             <a class="nes-btn is-primary" href="#patterns" :aria-current="activeSection === 'patterns' ? 'location' : null">Patterns</a>
           </nav>
         </div>
@@ -132,6 +133,52 @@
                   <li>Operational language over marketing-only copy</li>
                   <li>Explain what the AI did and why it is safe</li>
                 </ul>
+              </section>
+            </div>
+          </section>
+
+          <section class="topic">
+            <h2 id="adaptation"><a href="#adaptation">#</a>Selective adaptation</h2>
+            <p class="section-intro">
+              Rebuild behavior patterns from Web Awesome with NES primitives instead of transplanting
+              component styles directly.
+            </p>
+            <section class="nes-container with-title adaptation-card">
+              <p class="title">Web Awesome pattern → NES composition mapping</p>
+              <div class="nes-table-responsive">
+                <table class="nes-table is-bordered adaptation-table">
+                  <thead>
+                    <tr>
+                      <th>Web Awesome pattern</th>
+                      <th>NES composition</th>
+                      <th>Behavior to preserve</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="row in adaptationMappings" :key="row.webAwesome">
+                      <td>{{ row.webAwesome }}</td>
+                      <td><span class="nes-text is-primary">{{ row.nesPattern }}</span></td>
+                      <td>{{ row.behavior }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <div class="adoption-grid adaptation-grid">
+              <section class="nes-container with-title adaptation-card">
+                <p class="title">Style guardrail checklist</p>
+                <ul class="nes-list is-disc">
+                  <li v-for="item in styleGuardrails" :key="item">{{ item }}</li>
+                </ul>
+              </section>
+              <section class="nes-container is-dark with-title adaptation-card">
+                <p class="title">Visual regression checklist</p>
+                <ul class="nes-list is-disc is-dark">
+                  <li v-for="item in visualRegressionChecklist" :key="item">{{ item }}</li>
+                </ul>
+                <p class="nes-text is-warning screenshot-note">
+                  Required evidence: before/after screenshots per adapted pattern.
+                </p>
               </section>
             </div>
           </section>

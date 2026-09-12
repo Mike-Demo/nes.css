@@ -158,7 +158,113 @@ const humanInTheLoopMarkup = `<div class="review-list">
   </section>
 </div>`;
 
+const commandPaletteMarkup = `<section class="nes-container with-title">
+  <p class="title">Command palette · NES adaptation</p>
+  <div class="stack">
+    <div class="nes-field">
+      <label for="palette-input">Search actions</label>
+      <input id="palette-input" type="text" class="nes-input" value="Create release checklist for beta launch" />
+    </div>
+    <div class="status-row">
+      <span class="nes-badge"><span class="is-primary">Model: Lovable Fast</span></span>
+      <span class="nes-badge"><span class="is-success">Safe mode enabled</span></span>
+    </div>
+    <ul class="nes-list is-disc">
+      <li><span class="nes-text is-success">Run workflow</span> with current context</li>
+      <li><span class="nes-text is-warning">Preview</span> suggested output before publish</li>
+      <li><span class="nes-text is-error">Escalate</span> risky claims to reviewer</li>
+    </ul>
+    <div class="action-row">
+      <button type="button" class="nes-btn is-primary">Run selected command</button>
+      <button type="button" class="nes-btn">Open full action list</button>
+    </div>
+  </div>
+</section>`;
+
+const toastStackMarkup = `<div class="stack">
+  <section class="nes-container with-title">
+    <p class="title">Notification stack · NES adaptation</p>
+    <section class="nes-container is-dark">
+      <p class="nes-text is-success">Build summary is ready</p>
+      <p>AI generated release notes and attached references for review.</p>
+      <button type="button" class="nes-btn is-primary">View details</button>
+    </section>
+    <section class="nes-container">
+      <p class="nes-text is-warning">Approval expiring in 4 min</p>
+      <p>A reviewer must approve customer-facing changes before publish.</p>
+      <div class="action-row">
+        <button type="button" class="nes-btn is-warning">Request extension</button>
+        <button type="button" class="nes-btn">Assign reviewer</button>
+      </div>
+    </section>
+  </section>
+</div>`;
+
+const adaptationMappings = [
+  {
+    webAwesome: "Command palette",
+    nesPattern: "nes-input + nes-list + nes-btn",
+    behavior: "Search action, show ranked intents, expose safe next action",
+  },
+  {
+    webAwesome: "Toast/alert stack",
+    nesPattern: "nes-container + nes-text states + nes-btn",
+    behavior: "Inline status updates with explicit follow-up actions",
+  },
+  {
+    webAwesome: "Data table",
+    nesPattern: "nes-table + nes-badge + nes-text states",
+    behavior: "Readiness rows with owner, status, and escalation cue",
+  },
+  {
+    webAwesome: "Dialog flow",
+    nesPattern: "nes-container or nes-dialog + action-row buttons",
+    behavior: "Confirm, revise, or escalate high-impact operations",
+  },
+  {
+    webAwesome: "Filter controls",
+    nesPattern: "nes-select + nes-input + nes-btn",
+    behavior: "Expose scope, mode, and model before execution",
+  },
+];
+
+const styleGuardrails = [
+  "Use NES classes as the base API; avoid importing Web Awesome CSS directly.",
+  "Preserve NES spacing rhythm and border treatment in every adapted composition.",
+  "Map semantic states only to NES state colors: primary, success, warning, error.",
+  "Keep model, mode, confidence, and approval state visible near key actions.",
+  "Ensure keyboard focus visibility and keep controls reachable in logical tab order.",
+  "Use concise operational labels that explain system state and human responsibility.",
+];
+
+const visualRegressionChecklist = [
+  "Capture before/after screenshots for each adapted pattern at desktop and mobile widths.",
+  "Compare states: idle, loading/running, warning/blocked, and success/completed.",
+  "Verify typography, border density, and color semantics still read as NES-first.",
+  "Verify focus indicators, contrast, and readable copy in both light and dark surfaces.",
+];
+
 const sampleCollection = [
+  {
+    id: "command-palette-adaptation",
+    title: "Command palette adaptation",
+    component: "command-palette-preview",
+    description:
+      "Adapt quick-action palettes by combining NES inputs, status badges, and explicit human-safe actions.",
+    note: "Pattern source inspiration: Web Awesome command surfaces, rebuilt with NES primitives.",
+    showCode: false,
+    code: commandPaletteMarkup,
+  },
+  {
+    id: "toast-stack-adaptation",
+    title: "Notification stack adaptation",
+    component: "toast-stack-preview",
+    description:
+      "Translate transient alerts into stacked NES containers that keep urgency and next steps visible.",
+    note: "Avoid hidden toasts for critical flows; preserve explicit acknowledgment actions.",
+    showCode: false,
+    code: toastStackMarkup,
+  },
   {
     id: "prompt-composer",
     title: "Prompt composer",
@@ -248,11 +354,16 @@ new Vue({
     "ai-operations-dashboard-preview": { template: aiOperationsDashboardMarkup },
     "launch-checklist-preview": { template: launchChecklistMarkup },
     "human-in-the-loop-preview": { template: humanInTheLoopMarkup },
+    "command-palette-preview": { template: commandPaletteMarkup },
+    "toast-stack-preview": { template: toastStackMarkup },
   },
   data() {
     return {
       collection: sampleCollection,
       principles,
+      adaptationMappings,
+      styleGuardrails,
+      visualRegressionChecklist,
       copiedBalloonStyle: {
         display: "none",
         top: 0,
@@ -319,7 +430,7 @@ new Vue({
       this.showCopiedBalloon(event.pageY, event.pageX, copied);
     },
     updateActiveSection() {
-      const sections = ["principles", "foundations", "patterns"];
+      const sections = ["principles", "foundations", "adaptation", "patterns"];
       const current = sections.find((sectionId) => {
         const section = document.getElementById(sectionId);
         if (!section) return false;

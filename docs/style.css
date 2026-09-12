@@ -146,6 +146,7 @@ footer,
 .hero-panel,
 .principle-card,
 .foundation-card,
+.adaptation-card,
 .pattern-card,
 .adoption-grid > section,
 .samplecode {
@@ -161,6 +162,7 @@ footer,
 
 .principle-card,
 .foundation-card,
+.adaptation-card,
 .pattern-card,
 .adoption-grid > section,
 .samplecode {
@@ -170,6 +172,7 @@ footer,
 .hero-panel > .title,
 .principle-card > .title,
 .foundation-card > .title,
+.adaptation-card > .title,
 .pattern-card > .title,
 .adoption-grid > .nes-container > .title {
   color: var(--text);
@@ -247,6 +250,19 @@ h2 > a {
 
 .adoption-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.adaptation-grid {
+  margin-top: 20px;
+}
+
+.adaptation-table th,
+.adaptation-table td {
+  vertical-align: top;
+}
+
+.screenshot-note {
+  margin-top: 16px;
 }
 
 .showcase {
