@@ -133,7 +133,26 @@ footer,
 }
 
 .hero-copy {
-  padding: 16px 0;
+  padding: 32px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+}
+
+.principle-card,
+.foundation-card,
+.pattern-card,
+.adoption-grid > section,
+.samplecode {
+  color: var(--text);
+}
+
+.hero-panel > .title,
+.principle-card > .title,
+.foundation-card > .title,
+.pattern-card > .title,
+.adoption-grid > .nes-container > .title {
+  color: var(--text);
+  background: #181230 !important;
 }
 
 .hero h2 {
@@ -290,6 +309,25 @@ section.showcase > section.nes-container {
 .item .review-list .nes-container,
 .item .agent-list .nes-container,
 .item .metric-grid .nes-container {
+  margin: 0;
+}
+
+.item .message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item .message {
+  display: flex;
+}
+
+.item .message.-right {
+  justify-content: flex-end;
+}
+
+.item .message .nes-balloon {
+  max-width: 560px;
   margin: 0;
 }
 
