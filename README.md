@@ -64,7 +64,7 @@ import "nes.css/css/nes.min.css";
 
 ```html
 <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-<link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+<link href="https://unpkg.com/nes.css@2.3.0/css/nes-core.min.css" rel="stylesheet" />
 ```
 
 ## Usage
@@ -81,7 +81,7 @@ The live docs in `/docs` demonstrate these patterns with Lovable-flavored conten
 
 ## Browser support
 
-Compatible with the newest versions of Chrome, Firefox, and Safari.
+The published `nes.css` package is compatible with the newest versions of Chrome, Firefox, and Safari. The `/docs` demo adds modern browser expectations for smooth scrolling, clipboard access, and Vue-powered interactions.
 
 ## License
 
