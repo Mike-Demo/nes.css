@@ -1,6 +1,6 @@
 {
   "name": "nes.css",
-  "description": "NES.css is NES-style CSS Framework.",
+  "description": "NES.css is a retro CSS framework with Lovable-oriented demo docs.",
   "scripts": {
     "watch": "npm run build:sass -- --watch",
     "// Build task": "",
