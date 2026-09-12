@@ -22,7 +22,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Lovable AI Design System" />
     <meta property="og:description" content="Design patterns for prompt UX, agent orchestration, review flows, and AI operations." />
-    <meta property="og:url" content="https://nostalgic-css.github.io/NES.css/" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
 
@@ -37,9 +36,9 @@
           </a>
 
           <nav class="nav-actions" aria-label="Primary">
-            <a class="nes-btn" href="#principles">Principles</a>
-            <a class="nes-btn" href="#foundations">Foundations</a>
-            <a class="nes-btn is-primary" href="#patterns">Patterns</a>
+            <a class="nes-btn" href="#principles" :aria-current="activeSection === 'principles' ? 'location' : null">Principles</a>
+            <a class="nes-btn" href="#foundations" :aria-current="activeSection === 'foundations' ? 'location' : null">Foundations</a>
+            <a class="nes-btn is-primary" href="#patterns" :aria-current="activeSection === 'patterns' ? 'location' : null">Patterns</a>
           </nav>
         </div>
       </header>
@@ -187,8 +186,8 @@
           </p>
         </footer>
 
-        <div class="nes-balloon from-right copied-balloon" :style="copiedBalloon">
-          <p>copied!</p>
+        <div class="nes-balloon from-right copied-balloon" :class="{ 'is-dark': !copiedBalloon.success }" :style="copiedBalloon">
+          <p>{{ copiedBalloon.message }}</p>
         </div>
 
         <button

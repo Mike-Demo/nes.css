@@ -229,7 +229,10 @@ new Vue({
         display: "none",
         top: 0,
         left: 0,
+        message: "copied!",
+        success: true,
       },
+      activeSection: "principles",
       onScroll: null,
       scrollPos: 0,
     };
@@ -237,8 +240,10 @@ new Vue({
   mounted() {
     this.onScroll = () => {
       this.scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+      this.updateActiveSection();
     };
     document.addEventListener("scroll", this.onScroll);
+    this.updateActiveSection();
     hljs.initHighlightingOnLoad();
   },
   beforeDestroy() {
@@ -247,10 +252,12 @@ new Vue({
   methods: {
     async copy(event, id) {
       const code = this.collection.find((entry) => entry.id === id).code;
+      let copied = false;
 
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(code);
+          copied = true;
         } else {
           throw new Error("Clipboard API unavailable");
         }
@@ -264,17 +271,35 @@ new Vue({
         });
         this.$el.appendChild(fake);
         fake.select();
-        document.execCommand("copy");
+        copied = document.execCommand("copy");
         this.$el.removeChild(fake);
       }
 
-      this.showCopiedBalloon(event.pageY, event.pageX);
+      this.showCopiedBalloon(event.pageY, event.pageX, copied);
     },
-    showCopiedBalloon(top, left) {
+    updateActiveSection() {
+      const sections = ["principles", "foundations", "patterns"];
+      const current = sections.find((sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (!section) return false;
+
+        const { top, bottom } = section.getBoundingClientRect();
+        return top <= 140 && bottom > 140;
+      });
+      const visited = sections.filter((sectionId) => {
+        const section = document.getElementById(sectionId);
+        return section && section.getBoundingClientRect().top <= 140;
+      });
+
+      this.activeSection = current || visited[visited.length - 1] || sections[0];
+    },
+    showCopiedBalloon(top, left, success) {
       this.copiedBalloon = {
         display: "block",
         top: `${top - 100}px`,
         left: `${left - 180}px`,
+        message: success ? "copied!" : "copy failed",
+        success,
       };
       setTimeout(() => {
         this.copiedBalloon.display = "none";
