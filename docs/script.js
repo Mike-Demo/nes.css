@@ -260,6 +260,7 @@ new Vue({
       },
       copiedMessage: "copied!",
       copiedSuccess: true,
+      copiedBalloonTimeout: null,
       activeSection: "principles",
       onScroll: null,
       scrollPos: 0,
@@ -282,6 +283,9 @@ new Vue({
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.onScroll);
+    if (this.copiedBalloonTimeout) {
+      clearTimeout(this.copiedBalloonTimeout);
+    }
   },
   methods: {
     async copy(event, id) {
@@ -328,6 +332,10 @@ new Vue({
       this.activeSection = current || visited[visited.length - 1] || sections[0];
     },
     showCopiedBalloon(top, left, success) {
+      if (this.copiedBalloonTimeout) {
+        clearTimeout(this.copiedBalloonTimeout);
+      }
+
       this.copiedBalloonStyle = {
         display: "block",
         top: `${top - 100}px`,
@@ -335,8 +343,9 @@ new Vue({
       };
       this.copiedMessage = success ? "copied!" : "copy failed";
       this.copiedSuccess = success;
-      setTimeout(() => {
+      this.copiedBalloonTimeout = setTimeout(() => {
         this.copiedBalloonStyle.display = "none";
+        this.copiedBalloonTimeout = null;
       }, 1000);
     },
   },
