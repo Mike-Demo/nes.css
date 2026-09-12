@@ -245,20 +245,30 @@ new Vue({
     document.removeEventListener("scroll", this.onScroll);
   },
   methods: {
-    copy(event, id) {
-      this.showCopiedBalloon(event.pageY, event.pageX);
+    async copy(event, id) {
+      const code = this.collection.find((entry) => entry.id === id).code;
 
-      const fake = document.createElement("textarea");
-      fake.value = this.collection.find((entry) => entry.id === id).code;
-      fake.setAttribute("readonly", "");
-      Object.assign(fake.style, {
-        position: "absolute",
-        left: "-9999px",
-      });
-      this.$el.appendChild(fake);
-      fake.select();
-      document.execCommand("copy");
-      this.$el.removeChild(fake);
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(code);
+        } else {
+          throw new Error("Clipboard API unavailable");
+        }
+      } catch (error) {
+        const fake = document.createElement("textarea");
+        fake.value = code;
+        fake.setAttribute("readonly", "");
+        Object.assign(fake.style, {
+          position: "absolute",
+          left: "-9999px",
+        });
+        this.$el.appendChild(fake);
+        fake.select();
+        document.execCommand("copy");
+        this.$el.removeChild(fake);
+      }
+
+      this.showCopiedBalloon(event.pageY, event.pageX);
     },
     showCopiedBalloon(top, left) {
       this.copiedBalloon = {

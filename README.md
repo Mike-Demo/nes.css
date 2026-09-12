@@ -1,10 +1,10 @@
 # Lovable AI Design System
 
-A Lovable-oriented AI design system built on the NES.css component primitives.
+A Lovable-oriented design system concept built with the existing NES.css component primitives.
 
-This repository now positions the original retro component set as a foundation for AI-native product surfaces: prompt composers, agent status panels, review flows, usage dashboards, and human-in-the-loop controls.
+This repository reimagines the documentation and demo experience around AI-native product surfaces: prompt composers, agent status panels, review flows, usage dashboards, and human-in-the-loop controls. The published package remains `nes.css`; the Lovable-specific layer shown here comes from documentation patterns, composition examples, and demo styling in this repo.
 
-## What this system is for
+## What this demo is for
 
 - AI chat and prompt composition interfaces
 - Agent workflow monitoring and approval steps
@@ -67,7 +67,7 @@ import "nes.css/css/nes.min.css";
 
 ## Usage
 
-The framework remains CSS-only and intentionally layout-agnostic. Use it to assemble Lovable product experiences such as:
+The framework remains CSS-only and intentionally layout-agnostic. Use the base `nes.css` primitives to assemble Lovable-flavored product experiences such as:
 
 - AI feature launchpads
 - Workspace copilots
@@ -75,7 +75,7 @@ The framework remains CSS-only and intentionally layout-agnostic. Use it to asse
 - Experiment and eval scorecards
 - Safe automation dashboards
 
-The live docs in `/docs` demonstrate these patterns with Lovable-flavored content and interaction states.
+The live docs in `/docs` demonstrate these patterns with Lovable-flavored content and interaction states; they do not ship as additional compiled package assets.
 
 ## Browser support
 
