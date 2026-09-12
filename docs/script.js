@@ -239,15 +239,16 @@ const principles = [
   },
 ];
 
-Vue.component("prompt-composer-preview", { template: promptComposerMarkup });
-Vue.component("agent-activity-preview", { template: agentActivityMarkup });
-Vue.component("conversation-review-preview", { template: conversationReviewMarkup });
-Vue.component("ai-operations-dashboard-preview", { template: aiOperationsDashboardMarkup });
-Vue.component("launch-checklist-preview", { template: launchChecklistMarkup });
-Vue.component("human-in-the-loop-preview", { template: humanInTheLoopMarkup });
-
 new Vue({
   el: "#lovable-design-system",
+  components: {
+    "prompt-composer-preview": { template: promptComposerMarkup },
+    "agent-activity-preview": { template: agentActivityMarkup },
+    "conversation-review-preview": { template: conversationReviewMarkup },
+    "ai-operations-dashboard-preview": { template: aiOperationsDashboardMarkup },
+    "launch-checklist-preview": { template: launchChecklistMarkup },
+    "human-in-the-loop-preview": { template: humanInTheLoopMarkup },
+  },
   data() {
     return {
       collection: sampleCollection,
