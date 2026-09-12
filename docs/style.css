@@ -101,6 +101,9 @@ footer,
 }
 
 .nav-actions [aria-current="location"] {
+  color: #fff;
+  background: rgba(122, 108, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(122, 108, 255, 0.45);
   transform: translateY(-2px);
 }
 

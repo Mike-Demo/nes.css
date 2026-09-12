@@ -81,7 +81,7 @@ The live docs in `/docs` demonstrate these patterns with Lovable-flavored conten
 
 ## Browser support
 
-The published `nes.css` package is compatible with the newest versions of Chrome, Firefox, and Safari. The `/docs` demo has narrower expectations because it also relies on `position: sticky`, `backdrop-filter`, `scroll-behavior: smooth`, clipboard access, syntax highlighting, and Vue-powered interactions.
+The base published `nes.css` package is compatible with the newest versions of Chrome, Firefox, and Safari. The `/docs` demo in this repository showcases those patterns with the published `2.3.0` CSS build and has narrower expectations because it also relies on `position: sticky`, `backdrop-filter`, `scroll-behavior: smooth`, clipboard access, syntax highlighting, and Vue-powered interactions.
 
 ## License
 
