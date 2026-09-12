@@ -221,17 +221,46 @@ const principles = [
 
 function sanitizeHtml(html) {
   const template = document.createElement("template");
+  const allowedTags = new Set([
+    "BUTTON",
+    "DIV",
+    "LABEL",
+    "LI",
+    "OPTION",
+    "P",
+    "PROGRESS",
+    "SECTION",
+    "SELECT",
+    "SPAN",
+    "TABLE",
+    "TBODY",
+    "TD",
+    "TEXTAREA",
+    "TH",
+    "THEAD",
+    "TR",
+    "UL",
+  ]);
+  const allowedAttributes = new Set([
+    "class",
+    "disabled",
+    "for",
+    "id",
+    "max",
+    "selected",
+    "type",
+    "value",
+  ]);
   template.innerHTML = html;
 
   Array.from(template.content.querySelectorAll("*")).forEach((element) => {
-    if (["SCRIPT", "IFRAME", "OBJECT", "EMBED", "STYLE"].includes(element.tagName)) {
+    if (!allowedTags.has(element.tagName)) {
       element.remove();
       return;
     }
 
     Array.from(element.attributes).forEach((attribute) => {
-      const value = attribute.value.trim().toLowerCase();
-      if (attribute.name.startsWith("on") || value.startsWith("javascript:")) {
+      if (!allowedAttributes.has(attribute.name)) {
         element.removeAttribute(attribute.name);
       }
     });

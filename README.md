@@ -1,8 +1,8 @@
-# Lovable AI Design System
+# NES.css — Lovable AI Design System Demo
 
-A Lovable-oriented design system concept built with the existing NES.css component primitives.
+A Lovable-oriented design system demo built with the existing NES.css component primitives.
 
-This repository reimagines the documentation and demo experience around AI-native product surfaces: prompt composers, agent status panels, review flows, usage dashboards, and human-in-the-loop controls. The published package remains `nes.css`; the Lovable-specific layer shown here comes from documentation patterns, composition examples, and demo styling in this repo.
+This repository reimagines the NES.css documentation and demo experience around AI-native product surfaces: prompt composers, agent status panels, review flows, usage dashboards, and human-in-the-loop controls. The published package remains `nes.css`; the Lovable-specific layer shown here comes from documentation patterns, composition examples, and demo styling in this repo.
 
 ## What this demo is for
 
