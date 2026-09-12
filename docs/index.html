@@ -56,7 +56,7 @@
               </p>
               <div class="hero-actions">
                 <a class="nes-btn is-primary" href="#patterns">Explore patterns</a>
-                <a class="nes-btn" href="https://github.com/Mike-Demo/nes.css" target="_blank" rel="noopener">Repository</a>
+                <a class="nes-btn" href="https://github.com/Mike-Demo/nes.css" target="_blank" rel="noopener">GitHub repo</a>
               </div>
               <div class="signal-row">
                 <span class="nes-badge"><span class="is-primary">Prompt UX</span></span>
@@ -143,16 +143,16 @@
               orchestration, review, and analytics.
             </p>
 
-            <section class="showcase" v-for="sample in collection" :key="sample.title">
+            <section class="showcase" v-for="sample in collection" :key="sample.id">
               <section class="nes-container with-title pattern-card">
                 <p class="title">{{ sample.title }}</p>
-                <div :id="sample.title" class="item" v-html="sample.code"></div>
+                <div :id="sample.id" class="item" v-html="sample.code"></div>
                 <p v-if="sample.description" class="description nes-text">{{ sample.description }}</p>
                 <p v-if="sample.note" class="note nes-text is-warning">{{ sample.note }}</p>
                 <button type="button" class="nes-btn is-primary showcode" @click="sample.showCode = !sample.showCode">&lt;&gt;</button>
               </section>
               <section class="samplecode" v-show="sample.showCode">
-                <button type="button" class="nes-btn copycode" @click="copy($event, sample.title)">copy</button>
+                <button type="button" class="nes-btn copycode" @click="copy($event, sample.id)">copy</button>
                 <pre><code class="html">{{ sample.code }}</code></pre>
               </section>
             </section>
@@ -182,7 +182,7 @@
           <p>
             <span>Lovable AI Design System</span>
             <span>·</span>
-            <a href="https://github.com/Mike-Demo/nes.css" target="_blank" rel="noopener">View source</a>
+            <a href="https://github.com/Mike-Demo/nes.css" target="_blank" rel="noopener">View source on GitHub</a>
           </p>
         </footer>
 

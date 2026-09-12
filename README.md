@@ -90,5 +90,4 @@ Code released under the MIT License. Documentation released under Creative Commo
 ```shell
 npm install
 npm run build
-npm run storybook # local Storybook preview on port 6006
 ```

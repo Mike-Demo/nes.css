@@ -1,5 +1,6 @@
 const sampleCollection = [
   {
+    id: "prompt-composer",
     title: "Prompt composer",
     description:
       "A default creation surface should expose the model, the operating mode, and the next safe action in one place.",
@@ -42,6 +43,7 @@ const sampleCollection = [
 </div>`,
   },
   {
+    id: "agent-activity",
     title: "Agent activity",
     description:
       "Agent cards should make progress, confidence, and intervention points visible without opening another panel.",
@@ -72,6 +74,7 @@ const sampleCollection = [
 </div>`,
   },
   {
+    id: "conversation-review",
     title: "Conversation review",
     description:
       "Assistant responses need lightweight review affordances so product teams can approve, revise, or escalate quickly.",
@@ -97,6 +100,7 @@ const sampleCollection = [
 </section>`,
   },
   {
+    id: "ai-operations-dashboard",
     title: "AI operations dashboard",
     description:
       "Operational dashboards should emphasize trust metrics rather than vanity counts.",
@@ -120,6 +124,7 @@ const sampleCollection = [
 </div>`,
   },
   {
+    id: "launch-checklist",
     title: "Launch checklist",
     description:
       "Use lightweight tables and badges to document readiness, owners, and blockers before enabling an AI feature.",
@@ -163,6 +168,7 @@ const sampleCollection = [
 </div>`,
   },
   {
+    id: "human-in-the-loop-handoff",
     title: "Human-in-the-loop handoff",
     description:
       "Critical flows should tell users exactly what the AI completed and what still requires a person.",
@@ -238,7 +244,7 @@ new Vue({
       this.showCopiedBalloon(event.pageY, event.pageX);
 
       const fake = document.createElement("textarea");
-      fake.value = this.collection.find((entry) => entry.title === id).code;
+      fake.value = this.collection.find((entry) => entry.id === id).code;
       fake.setAttribute("readonly", "");
       Object.assign(fake.style, {
         position: "absolute",
