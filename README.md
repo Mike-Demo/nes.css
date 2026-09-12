@@ -61,7 +61,7 @@ import "nes.css/css/nes.min.css";
 #### via CDN
 
 ```html
-<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
 ```
 
@@ -90,5 +90,5 @@ Code released under the MIT License. Documentation released under Creative Commo
 ```shell
 npm install
 npm run build
-npm run storybook
+npm run storybook # local Storybook preview on port 6006
 ```
