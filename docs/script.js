@@ -219,64 +219,11 @@ const principles = [
   },
 ];
 
-function sanitizeHtml(html) {
-  const template = document.createElement("template");
-  const allowedTags = new Set([
-    "BUTTON",
-    "DIV",
-    "LABEL",
-    "LI",
-    "OPTION",
-    "P",
-    "PROGRESS",
-    "SECTION",
-    "SELECT",
-    "SPAN",
-    "TABLE",
-    "TBODY",
-    "TD",
-    "TEXTAREA",
-    "TH",
-    "THEAD",
-    "TR",
-    "UL",
-  ]);
-  const allowedAttributes = new Set([
-    "class",
-    "disabled",
-    "for",
-    "id",
-    "max",
-    "selected",
-    "type",
-    "value",
-  ]);
-  template.innerHTML = html;
-
-  Array.from(template.content.querySelectorAll("*")).forEach((element) => {
-    if (!allowedTags.has(element.tagName)) {
-      element.remove();
-      return;
-    }
-
-    Array.from(element.attributes).forEach((attribute) => {
-      if (!allowedAttributes.has(attribute.name)) {
-        element.removeAttribute(attribute.name);
-      }
-    });
-  });
-
-  return template.innerHTML;
-}
-
 new Vue({
   el: "#lovable-design-system",
   data() {
     return {
-      collection: sampleCollection.map((sample) => ({
-        ...sample,
-        renderedCode: sanitizeHtml(sample.code),
-      })),
+      collection: sampleCollection,
       principles,
       copiedBalloon: {
         display: "none",

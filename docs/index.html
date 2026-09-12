@@ -14,7 +14,7 @@
 
     <title>NES.css — Lovable AI Design System Demo</title>
 
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="../css/nes.min.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <script src="./lib/vue.min.js"></script>
     <script src="./lib/highlight.js"></script>
@@ -146,7 +146,174 @@
             <section class="showcase" v-for="sample in collection" :key="sample.id">
               <section class="nes-container with-title pattern-card">
                 <p class="title">{{ sample.title }}</p>
-                <div :id="sample.id" class="item" v-html="sample.renderedCode"></div>
+                <div :id="sample.id" class="item">
+                  <template v-if="sample.id === 'prompt-composer'">
+                    <div class="stack">
+                      <div class="prompt-toolbar">
+                        <div class="nes-field is-inline">
+                          <label for="composer-model">Model</label>
+                          <div class="nes-select">
+                            <select id="composer-model">
+                              <option>Lovable Reasoner</option>
+                              <option>Lovable Fast</option>
+                              <option>Lovable Vision</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="nes-field is-inline">
+                          <label for="composer-mode">Mode</label>
+                          <div class="nes-select is-primary">
+                            <select id="composer-mode">
+                              <option>Build</option>
+                              <option>Review</option>
+                              <option>Research</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="nes-field">
+                        <label for="composer-input">What should Lovable create?</label>
+                        <textarea id="composer-input" class="nes-textarea">Summarize the support backlog, draft a release note, and highlight anything that still needs approval.</textarea>
+                      </div>
+                      <div class="inline-meta">
+                        <span class="nes-text is-success">Context attached · Product brief · 4 files</span>
+                        <span class="nes-text is-warning">Human review required before publish</span>
+                      </div>
+                      <div class="action-row">
+                        <button type="button" class="nes-btn is-primary">Run prompt</button>
+                        <button type="button" class="nes-btn">Save as workflow</button>
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else-if="sample.id === 'agent-activity'">
+                    <div class="agent-list">
+                      <section class="nes-container with-title">
+                        <p class="title">Research agent</p>
+                        <p class="mini-title">Status</p>
+                        <div class="status-row">
+                          <span class="nes-badge"><span class="is-success">Running</span></span>
+                          <span class="nes-badge"><span class="is-primary">0.94 confidence</span></span>
+                        </div>
+                        <label for="research-progress">Evidence gathered</label>
+                        <progress id="research-progress" class="nes-progress is-success" value="76" max="100"></progress>
+                        <p>Scanning customer interviews and clustering feature requests into themes.</p>
+                      </section>
+                      <section class="nes-container is-dark with-title">
+                        <p class="title">Shipping agent</p>
+                        <p class="mini-title">Status</p>
+                        <div class="status-row">
+                          <span class="nes-badge"><span class="is-warning">Awaiting approval</span></span>
+                          <span class="nes-badge"><span class="is-error">Publish locked</span></span>
+                        </div>
+                        <label for="shipping-progress">Release checklist</label>
+                        <progress id="shipping-progress" class="nes-progress is-warning" value="58" max="100"></progress>
+                        <p>Prepared deployment notes, but is waiting on a human to approve external changes.</p>
+                      </section>
+                    </div>
+                  </template>
+                  <template v-else-if="sample.id === 'conversation-review'">
+                    <section class="nes-container">
+                      <section class="message-list">
+                        <section class="message -left">
+                          <div class="nes-balloon from-left">
+                            <p>Draft a friendly onboarding checklist for new Lovable workspace admins.</p>
+                          </div>
+                        </section>
+                        <section class="message -right">
+                          <div class="nes-balloon from-right is-dark">
+                            <p>I created a checklist covering workspace setup, permissions, AI guardrails, and launch readiness.</p>
+                          </div>
+                        </section>
+                      </section>
+                      <div class="action-row">
+                        <button type="button" class="nes-btn is-success">Approve</button>
+                        <button type="button" class="nes-btn is-warning">Request changes</button>
+                        <button type="button" class="nes-btn is-error">Escalate</button>
+                      </div>
+                    </section>
+                  </template>
+                  <template v-else-if="sample.id === 'ai-operations-dashboard'">
+                    <div class="metric-grid">
+                      <section class="nes-container with-title is-centered">
+                        <p class="title">Assist acceptance</p>
+                        <p class="metric-value nes-text is-success">81%</p>
+                        <p class="metric-label">last 7 days</p>
+                      </section>
+                      <section class="nes-container with-title is-centered">
+                        <p class="title">Human escalations</p>
+                        <p class="metric-value nes-text is-warning">14</p>
+                        <p class="metric-label">needs triage</p>
+                      </section>
+                      <section class="nes-container with-title is-centered">
+                        <p class="title">Broken runs</p>
+                        <p class="metric-value nes-text is-error">2</p>
+                        <p class="metric-label">rollback required</p>
+                      </section>
+                    </div>
+                  </template>
+                  <template v-else-if="sample.id === 'launch-checklist'">
+                    <div>
+                      <div class="table-toolbar">
+                        <span class="nes-badge"><span class="is-primary">Beta launch</span></span>
+                        <span class="nes-badge"><span class="is-success">3 of 4 checks passed</span></span>
+                      </div>
+                      <div class="nes-table-responsive">
+                        <table class="nes-table is-bordered is-centered">
+                          <thead>
+                            <tr>
+                              <th>Check</th>
+                              <th>Owner</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Prompt QA</td>
+                              <td>Design</td>
+                              <td><span class="nes-text is-success">Ready</span></td>
+                            </tr>
+                            <tr>
+                              <td>Safety review</td>
+                              <td>Trust</td>
+                              <td><span class="nes-text is-warning">In review</span></td>
+                            </tr>
+                            <tr>
+                              <td>Fallback copy</td>
+                              <td>Product</td>
+                              <td><span class="nes-text is-success">Ready</span></td>
+                            </tr>
+                            <tr>
+                              <td>Monitoring alerts</td>
+                              <td>Engineering</td>
+                              <td><span class="nes-text is-success">Ready</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else-if="sample.id === 'human-in-the-loop-handoff'">
+                    <div class="review-list">
+                      <section class="nes-container with-title">
+                        <p class="title">Completed by AI</p>
+                        <ul class="nes-list is-disc">
+                          <li>Clustered 48 feedback notes</li>
+                          <li>Generated the launch summary</li>
+                          <li>Flagged 3 risky claims for review</li>
+                        </ul>
+                      </section>
+                      <section class="nes-container is-dark with-title">
+                        <p class="title">Needs human action</p>
+                        <ul class="nes-list is-disc is-dark">
+                          <li>Approve publish text</li>
+                          <li>Confirm pricing language</li>
+                          <li>Decide whether to ship to beta or everyone</li>
+                        </ul>
+                        <button type="button" class="nes-btn is-primary">Open approval queue</button>
+                      </section>
+                    </div>
+                  </template>
+                </div>
                 <p v-if="sample.description" class="description nes-text">{{ sample.description }}</p>
                 <p v-if="sample.note" class="note nes-text is-warning">{{ sample.note }}</p>
                 <button type="button" class="nes-btn is-primary showcode" @click="sample.showCode = !sample.showCode">&lt;&gt;</button>
