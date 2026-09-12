@@ -1,11 +1,4 @@
-const sampleCollection = [
-  {
-    id: "prompt-composer",
-    title: "Prompt composer",
-    description:
-      "A default creation surface should expose the model, the operating mode, and the next safe action in one place.",
-    showCode: false,
-    code: `<div class="stack">
+const promptComposerMarkup = `<div class="stack">
   <div class="prompt-toolbar">
     <div class="nes-field is-inline">
       <label for="composer-model">Model</label>
@@ -40,15 +33,9 @@ const sampleCollection = [
     <button type="button" class="nes-btn is-primary">Run prompt</button>
     <button type="button" class="nes-btn">Save as workflow</button>
   </div>
-</div>`,
-  },
-  {
-    id: "agent-activity",
-    title: "Agent activity",
-    description:
-      "Agent cards should make progress, confidence, and intervention points visible without opening another panel.",
-    showCode: false,
-    code: `<div class="agent-list">
+</div>`;
+
+const agentActivityMarkup = `<div class="agent-list">
   <section class="nes-container with-title">
     <p class="title">Research agent</p>
     <p class="mini-title">Status</p>
@@ -71,15 +58,9 @@ const sampleCollection = [
     <progress id="shipping-progress" class="nes-progress is-warning" value="58" max="100"></progress>
     <p>Prepared deployment notes, but is waiting on a human to approve external changes.</p>
   </section>
-</div>`,
-  },
-  {
-    id: "conversation-review",
-    title: "Conversation review",
-    description:
-      "Assistant responses need lightweight review affordances so product teams can approve, revise, or escalate quickly.",
-    showCode: false,
-    code: `<section class="nes-container">
+</div>`;
+
+const conversationReviewMarkup = `<section class="nes-container">
   <section class="message-list">
     <section class="message -left">
       <div class="nes-balloon from-left">
@@ -97,15 +78,9 @@ const sampleCollection = [
     <button type="button" class="nes-btn is-warning">Request changes</button>
     <button type="button" class="nes-btn is-error">Escalate</button>
   </div>
-</section>`,
-  },
-  {
-    id: "ai-operations-dashboard",
-    title: "AI operations dashboard",
-    description:
-      "Operational dashboards should emphasize trust metrics rather than vanity counts.",
-    showCode: false,
-    code: `<div class="metric-grid">
+</section>`;
+
+const aiOperationsDashboardMarkup = `<div class="metric-grid">
   <section class="nes-container with-title is-centered">
     <p class="title">Assist acceptance</p>
     <p class="metric-value nes-text is-success">81%</p>
@@ -121,60 +96,49 @@ const sampleCollection = [
     <p class="metric-value nes-text is-error">2</p>
     <p class="metric-label">rollback required</p>
   </section>
-</div>`,
-  },
-  {
-    id: "launch-checklist",
-    title: "Launch checklist",
-    description:
-      "Use lightweight tables and badges to document readiness, owners, and blockers before enabling an AI feature.",
-    showCode: false,
-    code: `<div class="table-toolbar">
-  <span class="nes-badge"><span class="is-primary">Beta launch</span></span>
-  <span class="nes-badge"><span class="is-success">3 of 4 checks passed</span></span>
-</div>
-<div class="nes-table-responsive">
-  <table class="nes-table is-bordered is-centered">
-    <thead>
-      <tr>
-        <th>Check</th>
-        <th>Owner</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Prompt QA</td>
-        <td>Design</td>
-        <td><span class="nes-text is-success">Ready</span></td>
-      </tr>
-      <tr>
-        <td>Safety review</td>
-        <td>Trust</td>
-        <td><span class="nes-text is-warning">In review</span></td>
-      </tr>
-      <tr>
-        <td>Fallback copy</td>
-        <td>Product</td>
-        <td><span class="nes-text is-success">Ready</span></td>
-      </tr>
-      <tr>
-        <td>Monitoring alerts</td>
-        <td>Engineering</td>
-        <td><span class="nes-text is-success">Ready</span></td>
-      </tr>
-    </tbody>
-  </table>
-</div>`,
-  },
-  {
-    id: "human-in-the-loop-handoff",
-    title: "Human-in-the-loop handoff",
-    description:
-      "Critical flows should tell users exactly what the AI completed and what still requires a person.",
-    note: "Always reserve primary emphasis for the next safe human action.",
-    showCode: false,
-    code: `<div class="review-list">
+</div>`;
+
+const launchChecklistMarkup = `<div>
+  <div class="table-toolbar">
+    <span class="nes-badge"><span class="is-primary">Beta launch</span></span>
+    <span class="nes-badge"><span class="is-success">3 of 4 checks passed</span></span>
+  </div>
+  <div class="nes-table-responsive">
+    <table class="nes-table is-bordered is-centered">
+      <thead>
+        <tr>
+          <th>Check</th>
+          <th>Owner</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prompt QA</td>
+          <td>Design</td>
+          <td><span class="nes-text is-success">Ready</span></td>
+        </tr>
+        <tr>
+          <td>Safety review</td>
+          <td>Trust</td>
+          <td><span class="nes-text is-warning">In review</span></td>
+        </tr>
+        <tr>
+          <td>Fallback copy</td>
+          <td>Product</td>
+          <td><span class="nes-text is-success">Ready</span></td>
+        </tr>
+        <tr>
+          <td>Monitoring alerts</td>
+          <td>Engineering</td>
+          <td><span class="nes-text is-success">Ready</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>`;
+
+const humanInTheLoopMarkup = `<div class="review-list">
   <section class="nes-container with-title">
     <p class="title">Completed by AI</p>
     <ul class="nes-list is-disc">
@@ -192,7 +156,63 @@ const sampleCollection = [
     </ul>
     <button type="button" class="nes-btn is-primary">Open approval queue</button>
   </section>
-</div>`,
+</div>`;
+
+const sampleCollection = [
+  {
+    id: "prompt-composer",
+    title: "Prompt composer",
+    component: "prompt-composer-preview",
+    description:
+      "A default creation surface should expose the model, the operating mode, and the next safe action in one place.",
+    showCode: false,
+    code: promptComposerMarkup,
+  },
+  {
+    id: "agent-activity",
+    title: "Agent activity",
+    component: "agent-activity-preview",
+    description:
+      "Agent cards should make progress, confidence, and intervention points visible without opening another panel.",
+    showCode: false,
+    code: agentActivityMarkup,
+  },
+  {
+    id: "conversation-review",
+    title: "Conversation review",
+    component: "conversation-review-preview",
+    description:
+      "Assistant responses need lightweight review affordances so product teams can approve, revise, or escalate quickly.",
+    showCode: false,
+    code: conversationReviewMarkup,
+  },
+  {
+    id: "ai-operations-dashboard",
+    title: "AI operations dashboard",
+    component: "ai-operations-dashboard-preview",
+    description:
+      "Operational dashboards should emphasize trust metrics rather than vanity counts.",
+    showCode: false,
+    code: aiOperationsDashboardMarkup,
+  },
+  {
+    id: "launch-checklist",
+    title: "Launch checklist",
+    component: "launch-checklist-preview",
+    description:
+      "Use lightweight tables and badges to document readiness, owners, and blockers before enabling an AI feature.",
+    showCode: false,
+    code: launchChecklistMarkup,
+  },
+  {
+    id: "human-in-the-loop-handoff",
+    title: "Human-in-the-loop handoff",
+    component: "human-in-the-loop-preview",
+    description:
+      "Critical flows should tell users exactly what the AI completed and what still requires a person.",
+    note: "Always reserve primary emphasis for the next safe human action.",
+    showCode: false,
+    code: humanInTheLoopMarkup,
   },
 ];
 
@@ -218,6 +238,13 @@ const principles = [
       "Every automated action needs a clear stop, retry, or escalation route when quality or safety is uncertain.",
   },
 ];
+
+Vue.component("prompt-composer-preview", { template: promptComposerMarkup });
+Vue.component("agent-activity-preview", { template: agentActivityMarkup });
+Vue.component("conversation-review-preview", { template: conversationReviewMarkup });
+Vue.component("ai-operations-dashboard-preview", { template: aiOperationsDashboardMarkup });
+Vue.component("launch-checklist-preview", { template: launchChecklistMarkup });
+Vue.component("human-in-the-loop-preview", { template: humanInTheLoopMarkup });
 
 new Vue({
   el: "#lovable-design-system",
