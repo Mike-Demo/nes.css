@@ -14,6 +14,7 @@
 
     <title>NES.css — Lovable AI Design System Demo</title>
 
+    <!-- Bundled docs stylesheet generated at docs/nes.min.css -->
     <link href="./nes.min.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <script src="./lib/vue.min.js"></script>
@@ -186,8 +187,8 @@
           </p>
         </footer>
 
-        <div class="nes-balloon from-right copied-balloon" :class="{ 'is-dark': !copiedBalloon.success }" :style="copiedBalloon">
-          <p>{{ copiedBalloon.message }}</p>
+        <div class="nes-balloon from-right copied-balloon" :class="{ 'is-dark': !copiedSuccess }" :style="copiedBalloonStyle">
+          <p>{{ copiedMessage }}</p>
         </div>
 
         <button

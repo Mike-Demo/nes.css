@@ -253,13 +253,13 @@ new Vue({
     return {
       collection: sampleCollection,
       principles,
-      copiedBalloon: {
+      copiedBalloonStyle: {
         display: "none",
         top: 0,
         left: 0,
-        message: "copied!",
-        success: true,
       },
+      copiedMessage: "copied!",
+      copiedSuccess: true,
       activeSection: "principles",
       onScroll: null,
       scrollPos: 0,
@@ -328,15 +328,15 @@ new Vue({
       this.activeSection = current || visited[visited.length - 1] || sections[0];
     },
     showCopiedBalloon(top, left, success) {
-      this.copiedBalloon = {
+      this.copiedBalloonStyle = {
         display: "block",
         top: `${top - 100}px`,
         left: `${left - 180}px`,
-        message: success ? "copied!" : "copy failed",
-        success,
       };
+      this.copiedMessage = success ? "copied!" : "copy failed";
+      this.copiedSuccess = success;
       setTimeout(() => {
-        this.copiedBalloon.display = "none";
+        this.copiedBalloonStyle.display = "none";
       }, 1000);
     },
   },
