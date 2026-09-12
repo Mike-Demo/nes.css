@@ -289,7 +289,10 @@ new Vue({
   },
   methods: {
     async copy(event, id) {
-      const code = this.collection.find((entry) => entry.id === id).code;
+      const sample = this.collection.find((entry) => entry.id === id);
+      if (!sample) return;
+
+      const { code } = sample;
       let copied = false;
 
       try {
