@@ -230,14 +230,19 @@ new Vue({
         top: 0,
         left: 0,
       },
+      onScroll: null,
       scrollPos: 0,
     };
   },
   mounted() {
-    document.addEventListener("scroll", () => {
+    this.onScroll = () => {
       this.scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
-    });
+    };
+    document.addEventListener("scroll", this.onScroll);
     hljs.initHighlightingOnLoad();
+  },
+  beforeDestroy() {
+    document.removeEventListener("scroll", this.onScroll);
   },
   methods: {
     copy(event, id) {
