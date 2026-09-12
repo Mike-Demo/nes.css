@@ -113,8 +113,8 @@ footer,
   outline-offset: 4px;
 }
 
-.page-shell a:focus,
-.page-shell a:focus-visible,
+.page-shell a.nes-btn:focus,
+.page-shell a.nes-btn:focus-visible,
 .brand:focus,
 .brand:focus-visible {
   outline: 3px solid rgba(122, 108, 255, 0.7);

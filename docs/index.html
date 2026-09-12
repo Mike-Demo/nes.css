@@ -149,9 +149,16 @@
                 <div :id="sample.id" class="item"><component :is="sample.component"></component></div>
                 <p v-if="sample.description" class="description nes-text">{{ sample.description }}</p>
                 <p v-if="sample.note" class="note nes-text is-warning">{{ sample.note }}</p>
-                <button type="button" class="nes-btn is-primary showcode" @click="sample.showCode = !sample.showCode">&lt;&gt;</button>
+                <button
+                  type="button"
+                  class="nes-btn is-primary showcode"
+                  :aria-controls="sample.id + '-code'"
+                  :aria-expanded="sample.showCode ? 'true' : 'false'"
+                  :aria-label="sample.showCode ? 'Hide code sample' : 'Show code sample'"
+                  @click="sample.showCode = !sample.showCode"
+                >&lt;&gt;</button>
               </section>
-              <section class="samplecode" v-show="sample.showCode">
+              <section :id="sample.id + '-code'" class="samplecode" v-show="sample.showCode">
                 <button type="button" class="nes-btn copycode" @click="copy($event, sample.id)">copy</button>
                 <pre><code class="html">{{ sample.code }}</code></pre>
               </section>
