@@ -273,9 +273,11 @@ new Vue({
     document.addEventListener("scroll", this.onScroll);
     this.updateActiveSection();
     this.$nextTick(() => {
-      document.querySelectorAll("pre code").forEach((block) => {
-        hljs.highlightBlock(block);
-      });
+      if (hljs.highlightElement) {
+        document.querySelectorAll("pre code").forEach((block) => {
+          hljs.highlightElement(block);
+        });
+      }
     });
   },
   beforeDestroy() {
