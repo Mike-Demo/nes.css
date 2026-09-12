@@ -14,7 +14,7 @@
 
     <title>Lovable AI Design System</title>
 
-    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="../css/nes.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <script src="./lib/vue.min.js"></script>
     <script src="./lib/highlight.js"></script>
@@ -146,7 +146,7 @@
             <section class="showcase" v-for="sample in collection" :key="sample.id">
               <section class="nes-container with-title pattern-card">
                 <p class="title">{{ sample.title }}</p>
-                <div :id="sample.id" class="item" v-html="sample.code"></div>
+                <div :id="sample.id" class="item" v-html="sample.renderedCode"></div>
                 <p v-if="sample.description" class="description nes-text">{{ sample.description }}</p>
                 <p v-if="sample.note" class="note nes-text is-warning">{{ sample.note }}</p>
                 <button type="button" class="nes-btn is-primary showcode" @click="sample.showCode = !sample.showCode">&lt;&gt;</button>

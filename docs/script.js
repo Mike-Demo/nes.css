@@ -219,11 +219,35 @@ const principles = [
   },
 ];
 
+function sanitizeHtml(html) {
+  const template = document.createElement("template");
+  template.innerHTML = html;
+
+  Array.from(template.content.querySelectorAll("*")).forEach((element) => {
+    if (["SCRIPT", "IFRAME", "OBJECT", "EMBED", "STYLE"].includes(element.tagName)) {
+      element.remove();
+      return;
+    }
+
+    Array.from(element.attributes).forEach((attribute) => {
+      const value = attribute.value.trim().toLowerCase();
+      if (attribute.name.startsWith("on") || value.startsWith("javascript:")) {
+        element.removeAttribute(attribute.name);
+      }
+    });
+  });
+
+  return template.innerHTML;
+}
+
 new Vue({
   el: "#lovable-design-system",
   data() {
     return {
-      collection: sampleCollection,
+      collection: sampleCollection.map((sample) => ({
+        ...sample,
+        renderedCode: sanitizeHtml(sample.code),
+      })),
       principles,
       copiedBalloon: {
         display: "none",
@@ -244,7 +268,11 @@ new Vue({
     };
     document.addEventListener("scroll", this.onScroll);
     this.updateActiveSection();
-    hljs.initHighlightingOnLoad();
+    this.$nextTick(() => {
+      document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    });
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.onScroll);

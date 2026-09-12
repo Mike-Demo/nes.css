@@ -1,6 +1,6 @@
 {
   "name": "nes.css",
-  "description": "Lovable AI design system built on NES.css component primitives.",
+  "description": "NES.css is a retro CSS framework with Lovable-oriented demo docs.",
   "scripts": {
     "watch": "npm run build:sass -- --watch",
     "// Build task": "",
