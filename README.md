@@ -77,7 +77,7 @@ The framework remains CSS-only and intentionally layout-agnostic. Use the base `
 - Experiment and eval scorecards
 - Safe automation dashboards
 
-The live docs in `/docs` demonstrate these patterns with Lovable-flavored content and interaction states; they do not ship as additional compiled package assets.
+The live docs in `/docs` demonstrate these patterns with Lovable-flavored content and interaction states. The docs bundle includes a docs-only stylesheet snapshot and does not change the published package assets.
 
 ## Browser support
 
