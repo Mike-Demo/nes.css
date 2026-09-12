@@ -14,7 +14,7 @@
 
     <title>NES.css — Lovable AI Design System Demo</title>
 
-    <link id="nes-css-theme" href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="./nes.min.css" rel="stylesheet" />
     <link href="./style.css" rel="stylesheet" />
     <script src="./lib/vue.min.js"></script>
     <script src="./lib/highlight.js"></script>
@@ -204,9 +204,6 @@
   <script src="./script.js"></script>
   <script>
     const h = document.querySelector("head");
-    if (window.location.protocol === "file:") {
-      document.getElementById("nes-css-theme").href = "../css/nes.min.css";
-    }
     ["./lib/highlight-theme.css"].forEach((asset) => {
       const link = document.createElement("link");
       link.href = asset;
